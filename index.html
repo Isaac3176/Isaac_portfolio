@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
+    <nav id="navbar">
         <div class="container">
             <div class="logo">IM</div>
             <ul>
@@ -20,13 +20,24 @@
         </div>
     </nav>
 
+    <!-- Landing Screen -->
+    <section class="landing">
+        <div class="landing-content">
+            <h1 class="duck">🦆</h1>
+            <p class="tagline">One second.</p>
+
+
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
     <section class="hero" id="about">
         <div class="container">
             <div class="hero-content">
                 <h1>Isaac Mulugeta</h1>
                 <div class="subtitle">Software Engineer • Data & ML Enthusiast</div>
                 <p>
-                I’m a Computer Science & Mathematics student at Centre College who enjoys turning ideas into real, usable software.
+                I'm a Computer Science & Mathematics student at Centre College who enjoys turning ideas into real, usable software.
                 From competitive programming to full-stack apps and data analytics, I love building things that actually help people.
                 </p>
 
@@ -37,31 +48,6 @@
             </div>
         </div>
     </section>
-
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
-            <div class="contact-content">
-                <p>I’m always open to chatting about software, data, or new opportunities.
-Whether you’re hiring, collaborating, or just want to say hi — feel free to reach out!</p>
-                <div class="contact-links">
-                    <a href="mailto:isaactesfalidet6@gmail.com" class="contact-link">
-                        📧 Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/isaac-mulugeta/" target="_blank" class="contact-link">
-                        💼 LinkedIn
-                    </a>
-                    <a href="tel:+12025783638" class="contact-link">
-                        📱 (202) 578-3638
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Isaac Mulugeta. Designed to showcase innovation and impact.</p>
-    </footer>
 
     <section class="achievements" id="achievements">
         <div class="container">
@@ -102,7 +88,6 @@ It was a great test of teamwork, communication, and staying calm while debugging
                     alt="Analytics dashboard showing performance metrics" 
                     class="achievement-image"
                     />
-
                 </div>
             </div>
         </div>
@@ -115,6 +100,7 @@ It was a great test of teamwork, communication, and staying calm while debugging
                 <div class="project-card">
                     <div class="project-image">🍽️</div>
                     <div class="project-content">
+                        <h3>FitPlate</h3>
                         <p>
 FitPlate is a full-stack nutrition and meal-planning app designed to make eating well easier.
 It uses AI to generate personalized meal plans based on goals, preferences, and dietary needs — without overwhelming users.
@@ -148,6 +134,7 @@ The goal was simple: reduce waste while building community around fashion.
 <strong>Highlight:</strong> 🏆 Hackathon winner, recognized for impact and usability.
 </p>
 
+                        <div class="tech-stack">
                             <span class="tech-tag">React</span>
                             <span class="tech-tag">DynamoDB</span>
                             <span class="tech-tag">AWS</span>
@@ -191,7 +178,6 @@ The goal was simple: reduce waste while building community around fashion.
                             <li>Working across the stack to support new features and improve existing ones</li>
                             <li>Learning best practices around security, scalability, and real-world product development</li>
                         </ul>
-
                     </div>
                 </div>
 
@@ -206,7 +192,6 @@ The goal was simple: reduce waste while building community around fashion.
                             <li>Built interactive dashboards in R Shiny that coaches actually relied on</li>
                             <li>Helped translate data insights into on-field decisions that contributed to championships</li>
                         </ul>
-
                     </div>
                 </div>
 
@@ -221,7 +206,6 @@ The goal was simple: reduce waste while building community around fashion.
                             <li>Focused on accessibility, performance, and clean UI design</li>
                             <li>Improved load times and user engagement through thoughtful optimization</li>
                         </ul>
-
                     </div>
                 </div>
 
@@ -311,3 +295,77 @@ The goal was simple: reduce waste while building community around fashion.
             </div>
         </div>
     </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <p>I'm always open to chatting about software, data, or new opportunities.
+Whether you're hiring, collaborating, or just want to say hi — feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:isaactesfalidet6@gmail.com" class="contact-link">
+                        📧 Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/isaac-mulugeta/" target="_blank" class="contact-link">
+                        💼 LinkedIn
+                    </a>
+                    <a href="tel:+12025783638" class="contact-link">
+                        📱 (202) 578-3638
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Isaac Mulugeta. Designed to showcase innovation and impact.</p>
+    </footer>
+
+    <script>
+        // Cool landing transition
+        let hasScrolled = false;
+        const landing = document.querySelector('.landing');
+        
+        window.addEventListener('scroll', () => {
+            if (!hasScrolled && window.scrollY > 50) {
+                hasScrolled = true;
+                landing.classList.add('scrolled');
+            }
+        });
+
+        // Click on scroll indicator to trigger transition
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        });
+
+        // Section visibility animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections except landing
+        document.querySelectorAll('section:not(.landing)').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
