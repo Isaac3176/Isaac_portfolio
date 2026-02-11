@@ -349,6 +349,10 @@ section:not(.landing).visible {
   border: 1px solid var(--border);
 }
 
+.achievement-image.lightbox-trigger {
+  cursor: zoom-in;
+}
+
 /* ================================
    Projects
    ================================ */
@@ -604,6 +608,56 @@ footer {
   color: var(--muted);
   border-top: 1px solid var(--border);
   background: var(--paper);
+}
+
+/* ================================
+   Lightbox
+   ================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 41, 51, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 2000;
+  padding: 2rem;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox img {
+  max-width: min(900px, 95vw);
+  max-height: 85vh;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.6rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  background: var(--coffee);
+  color: var(--white);
 }
 
 /* ================================
